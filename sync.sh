@@ -1,18 +1,15 @@
 #!/bin/sh
 set -ex
 
-update_pkgbuild () {
-    local common
-    common=('.gitignore' '.SRCINFO')
-    local pkgbuilddir
-    local pkgbuildir="./git-templates/pkgbuild-$temp"
-    cp -ut "$pkgbuildir" "$common"
-    cp -u "PKGBUILD.$temp" "$pkgbuildir-$temp/PKGBUILD"
-    git -C "$pkgbuildir" add .
-    git -C "$pkgbuildir" commit -m "Update template"
-}
+templates=('default' 'python')
+common=('.gitignore' '.SRCINFO')
 
-for temp in ('default' 'python')
+for temp in ${templates[@]}
 do
-    update_pkgbuild
+    pkgbuildir="./git-templates/pkgbuild-$temp"
+    cp -ut "$pkgbuildir" ${common[*]}
+    cp -u "PKGBUILD.$temp" "$pkgbuildir/PKGBUILD"
+    alias git="git -C $pkgbuildir"
+    git add .
+    git diff-index --quiet HEAD || git commit -m 'Update template'
 done
