@@ -13,27 +13,21 @@ checkdepends=()
 optdepends=()
 provides=()
 conflicts=()
-source=("$pkgname-$pkgver.tar.gz"
-        "$pkgname-$pkgver.patch")
+source=("https://files.pythonhosted.org/packages/py3/${_name::1}/$_name/${_name//-/_}-$pkgver-py3-none-any.whl")
 sha256sums=()
 
-prepare() {
-  cd "$pkgname-$pkgver"
-  patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-}
-
 build() {
-  cd "$pkgname-$pkgver"
-  ./configure --prefix=/usr
-  make
+    cd "$_name-$pkgver"
+    python -m build --wheel --no-isolation
 }
 
 check() {
-  cd "$pkgname-$pkgver"
-  make -k check
+  cd "$_name-$pkgver"
+  # make -k check
+  pytest
 }
 
 package() {
-  cd "$pkgname-$pkgver"
-  make DESTDIR="$pkgdir/" install
+    cd "$_name-$pkgver"
+    python -m installer --destdir="$pkgdir" dist/*.whl
 }
