@@ -1,19 +1,20 @@
 # Maintainer: jmcb <joelsgp@protonmail.com>
 # https://wiki.archlinux.org/title/Python_package_guidelines
-pkgname=NAME
+pkgname=python-NAME
+_name=NAME
 pkgver=VERSION
 pkgrel=1
 pkgdesc=""
 arch=('any')
 url=""
 license=('GPL3')
-depends=(python)
-makedepends=(python-build python-installer python-wheel)
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
 checkdepends=()
 optdepends=()
 provides=()
 conflicts=()
-source=("https://files.pythonhosted.org/packages/py3/${_name::1}/$_name/${_name//-/_}-$pkgver-py3-none-any.whl")
+source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
 sha256sums=()
 
 build() {
@@ -23,8 +24,7 @@ build() {
 
 check() {
   cd "$_name-$pkgver"
-  # make -k check
-  pytest
+  python -m unittest
 }
 
 package() {
