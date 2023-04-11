@@ -1,6 +1,5 @@
 #!/bin/sh
-set -ex
-[[ $# -ne 1 ]]
+set -eux
 name=$1
 pkgbuildir="./git-templates/$name"
 mkdir -p "$pkgbuildir"

@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+set -eux
 
 templates=('default' 'python')
 common=('.gitignore' '.SRCINFO')
