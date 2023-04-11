@@ -1,11 +1,12 @@
 # Maintainer: jmcb <joelsgp@protonmail.com>
+# https://wiki.archlinux.org/title/Arch_package_guidelines
 pkgname=NAME
 pkgver=VERSION
 pkgrel=1
 pkgdesc=""
-arch=('')
+arch=('x86_64')
 url=""
-license=('')
+license=('GPL3')
 depends=()
 makedepends=()
 checkdepends=()
