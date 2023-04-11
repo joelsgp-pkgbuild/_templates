@@ -1,17 +1,15 @@
 #!/bin/sh
 set -ex
 
-common=('.gitignore' '.SRCINFO')
-for temp in ('pkgbuild' 'pkgbuild-python')
-do
-    cp -ut "./git-templates/$temp" $common
-
-done
-
 update_pkgbuild () {
-    pkgbuildir="./git-templates/pkgbuild-$temp"
-    cp -u "PKGBUILD.$temp" "./git-templates/pkgbuild-$temp/PKGBUILD"
-    git -C 
+    local common
+    common=('.gitignore' '.SRCINFO')
+    local pkgbuilddir
+    local pkgbuildir="./git-templates/pkgbuild-$temp"
+    cp -ut "$pkgbuildir" "$common"
+    cp -u "PKGBUILD.$temp" "$pkgbuildir-$temp/PKGBUILD"
+    git -C "$pkgbuildir" add .
+    git -C "$pkgbuildir" commit -m "Update template"
 }
 
 for temp in ('default' 'python')
