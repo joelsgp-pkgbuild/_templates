@@ -3,10 +3,11 @@ set -ex
 
 templates=('default' 'python')
 common=('.gitignore' '.SRCINFO')
+dirbase="$(pwd)/git-templates"
 
 for temp in ${templates[@]}
 do
-    pkgbuildir="./git-templates/pkgbuild-$temp"
+    pkgbuildir="$dirbase/pkgbuild-$temp"
     cp -ut "$pkgbuildir" ${common[*]}
     cp -u "PKGBUILD.$temp" "$pkgbuildir/PKGBUILD"
     alias git="git -C $pkgbuildir"
