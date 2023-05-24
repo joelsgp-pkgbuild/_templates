@@ -25,6 +25,7 @@ gh repo create "${github_namespace}/${new_name}" --public --remote 'origin' --so
 git -C "${new_dir}" remote add aur "${aur_prefix}/${new_name}"
 
 # copy template files
+# todo fill in pkgname from provided new_time
 cp "${template_dir}/PKGBUILD.${template_name}" "${new_dir}/PKGBUILD"
 cd "${template_dir}"
 cp -t "${new_dir}" "${default_files[@]}"
