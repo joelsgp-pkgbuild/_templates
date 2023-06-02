@@ -18,22 +18,22 @@ source=("$pkgname-$pkgver.tar.gz"
 sha256sums=()
 
 prepare() {
-  cd "$pkgname-$pkgver"
-  patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+    cd "$pkgname-$pkgver"
+    patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
 }
 
 build() {
-  cd "$pkgname-$pkgver"
-  ./configure --prefix=/usr
-  make
+    cd "$pkgname-$pkgver"
+    ./configure --prefix=/usr
+    make
 }
 
 check() {
-  cd "$pkgname-$pkgver"
-  make -k check
+    cd "$pkgname-$pkgver"
+    make -k check
 }
 
 package() {
-  cd "$pkgname-$pkgver"
-  make DESTDIR="$pkgdir/" install
+    cd "$pkgname-$pkgver"
+    make DESTDIR="$pkgdir/" install
 }

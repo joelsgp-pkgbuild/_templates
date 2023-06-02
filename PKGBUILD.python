@@ -23,8 +23,8 @@ build() {
 }
 
 check() {
-  cd "$_name-$pkgver"
-  python -m unittest
+    cd "$_name-$pkgver"
+    python -m unittest
 }
 
 package() {

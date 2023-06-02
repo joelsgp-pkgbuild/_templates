@@ -31,21 +31,24 @@ sha256sums=('ba859633c082e8318f606d4bf358f7d1c42d8da63ecea468edd4bbef5867b706'
 
 
 package() {
-  _opt="opt/${pkgname}"
-  _dest="${pkgdir}/${_opt}"
-  # create dest
-  install -d "${_dest}"
-  # install data
-  data_files=('.gitignore' 'PKGBUILD.default' 'PKGBUILD.python')
-  install -m644 -t "${_dest}" "${data_files[@]}"
-  # install executables
-  executable_files=('new.sh' 'printsrcinfo.sh')
-  install -t "${_dest}" "${executable_files[@]}"
-  # symlink to executables
-  _bin="${pkgdir}/usr/bin"
-  install -d "${_bin}"
-  for f in "${executable_files[@]}"
-  do
-    ln -s -t "${_bin}" "/${_opt}/${f}"
-  done
+    _opt="opt/${pkgname}"
+    _dest="${pkgdir}/${_opt}"
+
+    # create dest
+    install -d "${_dest}"
+
+    # install data
+    data_files=('.gitignore' 'PKGBUILD.default' 'PKGBUILD.python')
+    install -m644 -t "${_dest}" "${data_files[@]}"
+    # install executables
+    executable_files=('new.sh' 'printsrcinfo.sh')
+    install -t "${_dest}" "${executable_files[@]}"
+    
+    # symlink to executables
+    _bin="${pkgdir}/usr/bin"
+    install -d "${_bin}"
+    for f in "${executable_files[@]}"
+    do
+      ln -s -t "${_bin}" "/${_opt}/${f}"
+    done
 }
