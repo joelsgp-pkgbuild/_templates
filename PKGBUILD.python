@@ -1,8 +1,8 @@
 # Maintainer: jmcb <joelsgp@protonmail.com>
 # https://wiki.archlinux.org/title/Python_package_guidelines
-pkgname=python-NAME
-_name=NAME
-pkgver=VERSION
+pkgname='python-NAME'
+_name='NAME'
+pkgver='VERSION'
 pkgrel=1
 pkgdesc=""
 arch=('any')
