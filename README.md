@@ -4,3 +4,4 @@
 - https://wiki.archlinux.org/title/Arch_package_guidelines
     - https://wiki.archlinux.org/title/Python_package_guidelines
     - https://wiki.archlinux.org/title/VCS_package_guidelines
+        - https://wiki.archlinux.org/title/VCS_package_guidelines#Git
