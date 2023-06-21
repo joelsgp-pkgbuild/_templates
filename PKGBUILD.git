@@ -13,11 +13,11 @@ checkdepends=()
 optdepends=()
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-source=("${pkgname%-git}::https://example.com/${pkgname%-git}.git")
+source=("${pkgname}::https://example.com/${pkgname%-git}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd "${pkgname%-git}"
+    cd "${pkgname}"
     # https://wiki.archlinux.org/title/VCS_package_guidelines#Git
 
     # Git, tags available
@@ -28,22 +28,22 @@ pkgver() {
 }
 
 prepare() {
-    cd "${pkgname%-git}"
+    cd "${pkgname}"
     patch -p1 -i "$srcdir/${pkgname}-${pkgver}.patch"
 }
 
 build() {
-    cd "${pkgname%-git}"
+    cd "${pkgname}"
     ./configure --prefix=/usr
     make
 }
 
 check() {
-    cd "${pkgname%-git}"
+    cd "${pkgname}"
     make -k check
 }
 
 package() {
-    cd "${pkgname%-git}"
+    cd "${pkgname}"
     make DESTDIR="${pkgdir}/" install
 }
