@@ -20,10 +20,10 @@ pkgver() {
     cd "${pkgname}"
     # https://wiki.archlinux.org/title/VCS_package_guidelines#Git
 
-    # Using the most recent annotated tag reachable from the last commit: 
-	#git describe --long --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+    # Using the most recent annotated tag reachable from the last commit:
+    #git describe --long --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 
-    # Using the most recent un-annotated tag reachable from the last commit: 
+    # Using the most recent un-annotated tag reachable from the last commit:
     #git describe --long --tags --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'}
 
     # If there are no tags then use number of revisions since beginning of the history:
