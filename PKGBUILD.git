@@ -17,7 +17,7 @@ source=("${pkgname%-git}::https://example.com/${pkgname%-git}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd ${pkgname%-git}
+    cd "${pkgname%-git}"
     # https://wiki.archlinux.org/title/VCS_package_guidelines#Git
 
     # Git, tags available
@@ -28,22 +28,22 @@ pkgver() {
 }
 
 prepare() {
-    cd ${pkgname%-git}
+    cd "${pkgname%-git}"
     patch -p1 -i "$srcdir/${pkgname}-${pkgver}.patch"
 }
 
 build() {
-    cd ${pkgname%-git}
+    cd "${pkgname%-git}"
     ./configure --prefix=/usr
     make
 }
 
 check() {
-    cd ${pkgname%-git}
+    cd "${pkgname%-git}"
     make -k check
 }
 
 package() {
-    cd ${pkgname%-git}
+    cd "${pkgname%-git}"
     make DESTDIR="${pkgdir}/" install
 }
