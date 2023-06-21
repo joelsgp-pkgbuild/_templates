@@ -1,0 +1,6 @@
+- https://gitlab.archlinux.org/pacman/pacman/-/tree/master/proto
+    - https://gitlab.archlinux.org/pacman/pacman/-/blob/master/proto/PKGBUILD.proto
+    - https://gitlab.archlinux.org/pacman/pacman/-/blob/master/proto/PKGBUILD-vcs.proto
+- https://wiki.archlinux.org/title/Arch_package_guidelines
+    - https://wiki.archlinux.org/title/Python_package_guidelines
+    - https://wiki.archlinux.org/title/VCS_package_guidelines
