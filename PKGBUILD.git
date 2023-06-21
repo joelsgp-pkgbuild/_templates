@@ -1,0 +1,49 @@
+# Maintainer: jmcb <joelsgp@protonmail.com>
+
+pkgname='NAME-git'
+pkgver='VERSION'
+pkgrel=1
+pkgdesc=""
+arch=('x86_64')
+url=""
+license=('GPL3')
+depends=()
+makedepends=('git')
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+source=("${pkgname%-git}::https://example.com/${pkgname%-git}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd ${pkgname%-git}
+    # https://wiki.archlinux.org/title/VCS_package_guidelines#Git
+
+    # Git, tags available
+	#printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+
+    # Git, no tags available
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+    cd ${pkgname%-git}
+    patch -p1 -i "$srcdir/${pkgname}-${pkgver}.patch"
+}
+
+build() {
+    cd ${pkgname%-git}
+    ./configure --prefix=/usr
+    make
+}
+
+check() {
+    cd ${pkgname%-git}
+    make -k check
+}
+
+package() {
+    cd ${pkgname%-git}
+    make DESTDIR="${pkgdir}/" install
+}
